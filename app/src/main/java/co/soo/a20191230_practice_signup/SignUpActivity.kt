@@ -6,6 +6,7 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 //    SignUpActivity로 변경함!
 class SignUpActivity : BaseActivity() {
 
-
+    var selectedBirthDay:Calendar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,21 @@ class SignUpActivity : BaseActivity() {
 
                 val selectedDateStr = "${year} / ${month} / ${dayOfMonth}"
                 birthDayTxt.text = selectedDateStr
+
+                selectedBirthDay?.let {
+                    Log.d("생년월일선택", "이미 선택된 값을 수정 - 다시선택")
+
+                }.let {
+                    Log.d("생년월일선택", "선택된 값이 새로 생김 - 처음선택")
+                    selectedBirthDay = Calendar.getInstance()
+                }
+
+                selectedBirthDay?.set(Calendar.YEAR, year)
+                selectedBirthDay?.set(Calendar.MONTH, month)
+                selectedBirthDay?.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                selectedBirthDay?.set(year, month, dayOfMonth)
+
 
             }, 2019, Calendar.DECEMBER, 15)
 
