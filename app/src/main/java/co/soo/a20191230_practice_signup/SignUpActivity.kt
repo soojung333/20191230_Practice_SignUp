@@ -3,6 +3,7 @@ package co.soo.a20191230_practice_signup
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 //    SignUpActivity로 변경함!
@@ -36,7 +37,7 @@ class SignUpActivity : BaseActivity() {
 //        })
 
 
-        pwEdt. ??? {
+        pwEdt.addTextChangedListener {
             val inputStr = it.toString()
             if (inputStr.length == 0 ) {
                 pwStatusTxt.text = "비밀번호가 입력되지 않았습니다"
