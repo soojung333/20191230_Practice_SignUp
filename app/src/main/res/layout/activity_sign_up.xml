@@ -40,6 +40,7 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
+                android:id="@+id/pwEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -47,6 +48,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/pwStatusTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="비밀번호가 입력되지 않았습니다"
