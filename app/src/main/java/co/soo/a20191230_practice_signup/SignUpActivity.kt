@@ -1,6 +1,8 @@
 package co.soo.a20191230_practice_signup
 
+import android.app.DatePickerDialog
 import android.graphics.Color
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -41,7 +43,19 @@ class SignUpActivity : BaseActivity() {
 
         birthDayTxt.setOnClickListener {
             Toast.makeText(mContext, "생일 지정 텍스트뷰 클릭", Toast.LENGTH_SHORT).show()
+
+            val datapickerDialog = DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+                val selectedDateStr = "${year} / ${month} / ${dayOfMonth}"
+                birthDayTxt.text = selectedDateStr
+
+            }, 2019, Calendar.DECEMBER, 15)
+
+//            자바에서는 월을 0~11월로 사용함.
+//            Calendar 클래스의 변수를 활용해서 월을 입력하면 보기에 직관적.
+
         }
+
 
 
         pwEdt.addTextChangedListener {
