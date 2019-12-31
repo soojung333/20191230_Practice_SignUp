@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -29,6 +31,27 @@ class SignUpActivity : BaseActivity() {
 
 
     override fun setupEvents() {
+
+        jobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    Toast.makeText(mContext, jobSpinner.selectedItem.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+        }
+
+
 
         birthTimeTxt.setOnClickListener {
 
