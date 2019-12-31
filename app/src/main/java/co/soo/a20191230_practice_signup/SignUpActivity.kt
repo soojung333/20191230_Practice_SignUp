@@ -1,7 +1,9 @@
 package co.soo.a20191230_practice_signup
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.graphics.Color
+import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
@@ -28,6 +30,15 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        birthTimeTxt.setOnClickListener {
+
+            val timePickerDialog = TimePickerDialog(mContext, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+
+            }, 20, 5, false)
+            timePickerDialog.show()
+
+        }
+
 //        pwEdt.addTextChangedListener(object : TextWatcher {
 //            override fun afterTextChanged(s: Editable?) {
 //
@@ -43,7 +54,6 @@ class SignUpActivity : BaseActivity() {
 
 
         birthDayTxt.setOnClickListener {
-            Toast.makeText(mContext, "생일 지정 텍스트뷰 클릭", Toast.LENGTH_SHORT).show()
 
             val datapickerDialog = DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
 
@@ -65,11 +75,18 @@ class SignUpActivity : BaseActivity() {
                 selectedBirthDay?.set(year, month, dayOfMonth)
 
 
+//                저장된 생년월일을 SimpleDateFormat 을 이용해 출력
+
+                val sdf = SimpleDateFormat("yyyy년 MM월 d일")
+                birthDayTxt.text = sdf.format(selectedBirthDay?.time)
+
+
             }, 2019, Calendar.DECEMBER, 15)
 
 //            자바에서는 월을 0~11월로 사용함.
 //            Calendar 클래스의 변수를 활용해서 월을 입력하면 보기에 직관적.
 
+            datapickerDialog.show()
         }
 
 
