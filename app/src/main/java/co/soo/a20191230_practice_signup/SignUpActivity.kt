@@ -13,10 +13,18 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import co.soo.a20191230_practice_signup.adapters.AlcoholAdapter
+import co.soo.a20191230_practice_signup.datas.Alcohol
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlin.collections.ArrayList
+import java.util.*
+
 
 //    SignUpActivity로 변경함!
 class SignUpActivity : BaseActivity() {
+
+    val alcoholList = ArrayList<Alcohol>()
+    var alcoholAdapter:AlcoholAdapter? = null
 
     var selectedBirthDay:Calendar? = null
 
@@ -145,8 +153,22 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        addAlcohols()
+
+        alcoholAdapter = AlcoholAdapter(mContext, R.layout.alcohol_spinner_list_item, alcoholList)
+        alcoholSpinner.adapter = alcoholAdapter
 
 
     }
+
+    fun addAlcohols() {
+
+        alcoholList.add(Alcohol("소주","참이슬"))
+        alcoholList.add(Alcohol("소주","처음처럼"))
+        alcoholList.add(Alcohol("소주","한라산"))
+        alcoholList.add(Alcohol("소주","좋은데"))
+
+    }
+
 
 }
